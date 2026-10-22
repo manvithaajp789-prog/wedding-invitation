@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Divine Wedding Invitation 🕉️</title>
+
+<style>
+:root {
+  --navy: #071b32;
+  --gold: #f4c879;
+  --cream: #fff2d8;
+  --red: #8e2639;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(ellipse at top, #174568, transparent 60%),
+    linear-gradient(180deg, #07172b, #102b45, #061528);
+  text-align: center;
+  overflow-x: hidden;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+.gold { color: var(--gold); }
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 18px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(3,15,31,.18), rgba(3,15,31,.88)),
+    url("shiva-parvati.png") center 35% / cover no-repeat;
+}
+
+.hero::after {
+  content: "✦  🪷  ✦";
+  position: absolute;
+  bottom: 18px;
+  color: var(--gold);
+  letter-spacing: 12px;
+  animation: glow 3s infinite alternate;
+}
+
+.om {
+  color: var(--gold);
+  font-size: 42px;
+  animation: glow 2s infinite alternate;
+}
+
+.eyebrow {
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: clamp(38px, 8vw, 70px);
+  font-weight: normal;
+  font-style: italic;
+  color: var(--gold);
+  margin: 18px 0;
+  text-shadow: 0 0 25px #d69b4b66;
+}
+
+.hero p {
+  max-width: 470px;
+  line-height: 1.9;
+  font-size: 16px;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  border-radius: 40px;
+  padding: 14px 27px;
+  margin: 10px 5px;
+  background: linear-gradient(135deg, #f8dda0, #d49b46);
+  color: #29182a;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px #e9bd6a70;
+}
+
+.btn.outline {
+  background: transparent;
+  color: var(--gold);
+}
+
+.section {
+  padding: 65px 18px;
+  position: relative;
+}
+
+.section h2 {
+  color: var(--gold);
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: normal;
+  font-style: italic;
+  margin: 0 0 25px;
+}
+
+.invitation {
+  display: none;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 35px 20px;
+  background: var(--cream);
+  color: #493020;
+  border: 5px double #b58a46;
+  border-radius: 8px;
+  box-shadow: 0 0 40px #e8b65d20;
+  animation: reveal 1.2s ease both;
+}
+
+.invitation.show { display: block; }
+
+.invitation h2 {
+  color: var(--red);
+  font-size: 35px;
+}
+
+.deity-image {
+  width: min(100%, 360px);
+  height: 290px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 48% 48% 8px 8px;
+  border: 3px solid #c39a56;
+  margin: 10px auto 25px;
+  display: block;
+}
+
+.names {
+  font-size: clamp(28px, 6vw, 44px);
+  color: var(--red);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.divider {
+  color: #b68b43;
+  margin: 20px auto;
+  letter-spacing: 8px;
+}
+
+.details {
+  max-width: 900px;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+}
+
+.detail-card {
+  border: 1px solid #c59b5d70;
+  border-radius: 14px;
+  padding: 25px 14px;
+  background: #ffffff08;
+}
+
+.detail-card .symbol {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.detail-card h3 {
+  color: var(--gold);
+  font-weight: normal;
+  font-size: 21px;
+}
+
+.detail-card p {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.time-box {
+  width: 85px;
+  padding: 15px 5px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 0 15px #e4b86418;
+}
+
+.time-box strong {
+  font-size: 26px;
+  color: var(--gold);
+  font-weight: normal;
+}
+
+.time-box span { font-size: 12px; margin-top: 5px; }
+
+.blessing {
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.9;
+}
+
+footer {
+  padding: 30px 15px;
+  color: #e6cda3;
+  border-top: 1px solid #c59b5d40;
+}
+
+.petal {
+  position: fixed;
+  top: -30px;
+  z-index: 5;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(540deg); opacity: .1; }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 6px #f4c87955; }
+  to { text-shadow: 0 0 25px #f4c879; }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(35px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero { min-height: 90vh; }
+  .invitation { padding: 25px 13px; }
+  .deity-image { height: 240px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FRONT PAGE -->
+<header class="hero">
+  <div class="om">ॐ</div>
+  <div class="eyebrow">Two Souls · One Journey</div>
+  <h1>Wedding Invitation</h1>
+
+  <p>
+    Inspired by the eternal love of<br>
+    <span class="gold">Lord Shiva & Goddess Parvati</span><br>
+    May our journey be blessed with love,
+    patience, devotion and togetherness.
+  </p>
+
+  <button class="btn" onclick="openInvitation()">
+    Open Invitation ♥
+  </button>
+  <p style="font-size:12px">With divine blessings 🪷</p>
+</header>
+
+<!-- INVITATION CARD -->
+<section class="section" id="invitationSection">
+  <div class="invitation" id="invitationCard">
+    <div style="font-size:30px;color:#a87930">ॐ</div>
+    <p><i>With the blessings of</i></p>
+    <h2>Lord Shiva & Goddess Parvati</h2>
+
+    <!-- Add shiva-parvati.png to your repository -->
+    <img class="deity-image"
+         src="shiva-parvati.png"
+         alt="Lord Shiva and Goddess Parvati">
+
+    <p>With joyful hearts, our families invite you to celebrate the wedding of</p>
+
+    <div class="names">
+      <span id="brideName"></span><br>
+      <span style="font-size:22px;color:#493020">&</span><br>
+      <span id="groomName"></span>
+    </div>
+
+    <div class="divider">❧ ✧ ❧</div>
+    <p><i>Two hearts · Two families · One forever</i></p>
+    <p>Join us as we begin a beautiful new chapter together.</p>
+  </div>
+
+  <p id="revealHint" class="gold">
+    🪷 Tap “Open Invitation” above to reveal the wedding card 🪷
+  </p>
+</section>
+
+<!-- WEDDING DETAILS -->
+<section class="section" id="details">
+  <h2>✧ Wedding Details ✧</h2>
+
+  <div class="details">
+    <div class="detail-card">
+      <div class="symbol">🪔</div>
+      <h3>Date & Time</h3>
+      <p id="dateText"></p>
+      <p id="timeText"></p>
+    </div>
+
+    <div class="detail-card">
+      <div class="symbol">🛕</div>
+      <h3>Venue</h3>
+      <p id="venueText"></p>
+      <p id="cityText"></p>
+    </div>
+
+    <div class="detail-card">
+      <div class="symbol">📍</div>
+      <h3>Find Us</h3>
+      <p>We look forward to welcoming you.</p>
+      <a class="btn outline" id="mapButton"
+         href="#" target="_blank" rel="noopener">
+        Google Maps
+      </a>
+    </div>
+
+    <div class="detail-card">
+      <div class="symbol">💌</div>
+      <h3>RSVP</h3>
+      <p>Kindly let us know if you can join us.</p>
+      <a class="btn outline" id="rsvpButton"
+         href="#" target="_blank" rel="noopener">
+        WhatsApp RSVP
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="section">
+  <h2>Counting Down to Forever</h2>
+
+  <div class="countdown">
+    <div class="time-box"><strong id="days">00</strong><span>Days</span></div>
+    <div class="time-box"><strong id="hours">00</strong><span>Hours</span></div>
+    <div class="time-box"><strong id="minutes">00</strong><span>Minutes</span></div>
+    <div class="time-box"><strong id="seconds">00</strong><span>Seconds</span></div>
+  </div>
+
+  <p class="blessing">
+    🔱 May Lord Shiva and Goddess Parvati bless us
+    with a lifetime of love, happiness, harmony
+    and togetherness. 🪷
+  </p>
+</section>
+
+<footer>
+  <p>ॐ नमः शिवाय</p>
+  <p>Made with love, devotion and blessings ♥</p>
+</footer>
+
+<script>
+/* ✨ EDIT YOUR WEDDING DETAILS HERE ✨ */
+const wedding = {
+  bride: "Bride's Name",
+  groom: "Groom's Name",
+
+  // Format: YYYY-MM-DDTHH:MM:SS+05:30
+  date: "2026-11-15T11:00:00+05:30",
+  dateText: "Sunday, 15 November 2026",
+  time: "11:00 AM onwards",
+
+  venue: "Sri Lakshmi Wedding Hall",
+  city: "Davanagere, Karnataka",
+
+  // Replace with your exact Google Maps link
+  map: "https://maps.google.com/?q=Davanagere+Karnataka",
+
+  // Use country code, without +, spaces or dashes
+  whatsapp: "919876543210"
+};
+
+/* Display the details */
+document.getElementById("brideName").textContent = wedding.bride;
+document.getElementById("groomName").textContent = wedding.groom;
+document.getElementById("dateText").textContent = wedding.dateText;
+document.getElementById("timeText").textContent = wedding.time;
+document.getElementById("venueText").textContent = wedding.venue;
+document.getElementById("cityText").textContent = wedding.city;
+document.getElementById("mapButton").href = wedding.map;
+
+const message = encodeURIComponent(
+  "Hello! I would like to RSVP for the wedding of " +
+  wedding.bride + " and " + wedding.groom + "."
+);
+
+document.getElementById("rsvpButton").href =
+  "https://wa.me/" + wedding.whatsapp + "?text=" + message;
+
+/* Interactive opening */
+function openInvitation() {
+  const card = document.getElementById("invitationCard");
+  card.classList.add("show");
+  document.getElementById("revealHint").style.display = "none";
+
+  document.getElementById("invitationSection").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+/* Live countdown */
+function updateCountdown() {
+  const target = new Date(wedding.date).getTime();
+  const difference = target - Date.now();
+
+  if (Number.isNaN(target)) return;
+
+  if (difference <= 0) {
+    ["days", "hours", "minutes", "seconds"].forEach(id => {
+      document.getElementById(id).textContent = "00";
+    });
+    return;
+  }
+
+  const values = {
+    days: Math.floor(difference / 86400000),
+    hours: Math.floor((difference % 86400000) / 3600000),
+    minutes: Math.floor((difference % 3600000) / 60000),
+    seconds: Math.floor((difference % 60000) / 1000)
+  };
+
+  Object.entries(values).forEach(([id, value]) => {
+    document.getElementById(id).textContent =
+      String(value).padStart(2, "0");
+  });
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* Floating lotus petals */
+const petals = ["🌸", "🪷", "✿"];
+
+function createPetal() {
+  const petal = document.createElement("span");
+  petal.className = "petal";
+  petal.textContent = petals[Math.floor(Math.random() * petals.length)];
+
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.fontSize = (12 + Math.random() * 16) + "px";
+  petal.style.opacity = 0.4 + Math.random() * 0.5;
+  petal.style.animationDuration = (7 + Math.random() * 8) + "s";
+
+  document.body.appendChild(petal);
+  setTimeout(() => petal.remove(), 16000);
+}
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  setInterval(createPetal, 700);
+}
+</script>
+
+</body>
+</html>
