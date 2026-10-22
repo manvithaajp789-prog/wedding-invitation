@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Wedding Invitation</title>
+
+<style>
+:root {
+  --maroon: #650d25;
+  --gold: #d6ad59;
+  --cream: #fff7e8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #3e0717;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  text-align: center;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle, #8e2840, #3e0717 75%);
+  transition: opacity 1s, visibility 1s;
+}
+
+.cover.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cover-card {
+  width: min(100%, 390px);
+  padding: 44px 22px;
+  border: 2px solid var(--gold);
+  outline: 1px solid var(--gold);
+  outline-offset: 7px;
+  background: rgba(70, 5, 24, .7);
+  animation: appear 1.4s ease both;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ornament {
+  color: var(--gold);
+  font-size: 30px;
+  letter-spacing: 8px;
+}
+
+.cover h1 {
+  color: var(--gold);
+  font-size: clamp(28px, 8vw, 42px);
+  margin: 22px 0 12px;
+}
+
+button, .btn {
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  padding: 13px 22px;
+  color: var(--maroon);
+  background: var(--gold);
+  font: bold 15px Georgia, serif;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  margin: 7px;
+  transition: transform .2s, background .2s;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-2px);
+  background: #f2d99a;
+}
+
+main {
+  width: min(100% - 24px, 720px);
+  margin: 25px auto;
+  padding: 12px;
+  border: 2px solid var(--gold);
+  background: var(--cream);
+  color: var(--maroon);
+}
+
+.inner {
+  padding: clamp(20px, 6vw, 50px) 14px;
+  border: 1px solid var(--gold);
+  background:
+    radial-gradient(ellipse at top, #fffdf6, var(--cream));
+}
+
+.top-symbol {
+  font-size: 45px;
+  color: #a51d3e;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 12px;
+  color: #87611e;
+}
+
+h2 {
+  color: var(--maroon);
+  font-size: clamp(30px, 8vw, 48px);
+  margin: 18px 0;
+}
+
+.names {
+  font-size: clamp(27px, 7vw, 40px);
+  line-height: 1.45;
+  color: #8b1735;
+}
+
+.ampersand {
+  display: block;
+  font-size: 27px;
+  color: #b58a38;
+}
+
+p { line-height: 1.8; }
+
+.gold-line {
+  width: 100px;
+  height: 1px;
+  background: var(--gold);
+  margin: 25px auto;
+}
+
+.details {
+  margin: 24px auto;
+  padding: 18px 10px;
+  border-top: 1px solid #ddc68e;
+  border-bottom: 1px solid #ddc68e;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.time-box {
+  min-width: 68px;
+  padding: 12px 8px;
+  background: #6c1029;
+  color: white;
+  border: 1px solid var(--gold);
+}
+
+.time-box strong {
+  display: block;
+  font-size: 25px;
+  color: var(--gold);
+}
+
+.time-box span { font-size: 11px; }
+
+footer {
+  font-size: 13px;
+  margin-top: 35px;
+  color: #765326;
+}
+
+#invitation { display: none; }
+#invitation.show { display: block; animation: appear 1s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="cover" id="cover">
+  <div class="cover-card">
+    <div class="ornament">❧ ❋ ❧</div>
+    <p class="eyebrow">Together with our families</p>
+    <h1>You're Invited</h1>
+    <p>A beautiful beginning to a lifetime of love</p>
+    <div class="ornament">❦</div>
+    <p>Tap below to open your invitation</p>
+    <button onclick="openInvitation()">Open Invitation ♥</button>
+  </div>
+</div>
+
+<main id="invitation">
+  <div class="inner">
+
+    <div class="top-symbol">❀</div>
+    <p class="eyebrow">With the blessings of our families</p>
+
+    <h2>Wedding Invitation</h2>
+
+    <p>
+      With joyful hearts, we invite you to celebrate
+      the beginning of our forever.
+    </p>
+
+    <div class="gold-line"></div>
+
+    <div class="names">
+      <span id="bride">Bride's Name</span>
+      <span class="ampersand">&</span>
+      <span id="groom">Groom's Name</span>
+    </div>
+
+    <p>Request the pleasure of your gracious presence<br>
+       as we begin our journey together.</p>
+
+    <div class="details">
+      <p class="eyebrow">The auspicious occasion</p>
+      <h3 id="dateText">Sunday, 15 November 2026</h3>
+      <p id="timeText">11:00 AM onwards</p>
+      <p id="venueText">Sri Lakshmi Wedding Hall</p>
+      <p id="cityText">Davanagere, Karnataka</p>
+    </div>
+
+    <p class="eyebrow">Counting down to forever</p>
+
+    <div class="countdown">
+      <div class="time-box">
+        <strong id="days">00</strong><span>Days</span>
+      </div>
+      <div class="time-box">
+        <strong id="hours">00</strong><span>Hours</span>
+      </div>
+      <div class="time-box">
+        <strong id="minutes">00</strong><span>Minutes</span>
+      </div>
+      <div class="time-box">
+        <strong id="seconds">00</strong><span>Seconds</span>
+      </div>
+    </div>
+
+    <a class="btn" id="mapButton"
+       href="https://maps.google.com/?q=Davanagere+Karnataka"
+       target="_blank" rel="noopener">
+       📍 View Location
+    </a>
+
+    <a class="btn" id="rsvpButton"
+       href="https://wa.me/919876543210?text=Congratulations!%20I%20would%20love%20to%20attend."
+       target="_blank" rel="noopener">
+       💌 RSVP on WhatsApp
+    </a>
+
+    <div class="gold-line"></div>
+
+    <p>May our union be blessed with love, happiness,<br>
+       and a lifetime of beautiful memories.</p>
+
+    <div class="top-symbol">❦</div>
+    <p><strong>We look forward to celebrating with you!</strong></p>
+
+    <footer>Made with love ♥</footer>
+
+  </div>
+</main>
+
+<script>
+// Change these details for your wedding.
+const wedding = {
+  bride: "Bride's Name",
+  groom: "Groom's Name",
+  // Use 24-hour format: YYYY-MM-DDTHH:MM:SS+05:30
+  date: "2026-11-15T11:00:00+05:30",
+  dateText: "Sunday, 15 November 2026",
+  time: "11:00 AM onwards",
+  venue: "Sri Lakshmi Wedding Hall",
+  city: "Davanagere, Karnataka",
+  map: "https://maps.google.com/?q=Davanagere+Karnataka",
+  whatsapp: "919876543210"
+};
+
+document.getElementById("bride").textContent = wedding.bride;
+document.getElementById("groom").textContent = wedding.groom;
+document.getElementById("dateText").textContent = wedding.dateText;
+document.getElementById("timeText").textContent = wedding.time;
+document.getElementById("venueText").textContent = wedding.venue;
+document.getElementById("cityText").textContent = wedding.city;
+document.getElementById("mapButton").href = wedding.map;
+
+document.getElementById("rsvpButton").href =
+  "https://wa.me/" + wedding.whatsapp +
+  "?text=" + encodeURIComponent(
+    "Hello! I would like to respond to the wedding invitation of " +
+    wedding.bride + " and " + wedding.groom + "."
+  );
+
+function openInvitation() {
+  document.getElementById("cover").classList.add("hidden");
+  document.getElementById("invitation").classList.add("show");
+}
+
+function updateCountdown() {
+  const target = new Date(wedding.date).getTime();
+  const diff = target - Date.now();
+
+  if (!Number.isFinite(target)) return;
+
+  if (diff <= 0) {
+    ["days", "hours", "minutes", "seconds"].forEach(id => {
+      document.getElementById(id).textContent = "00";
+    });
+    return;
+  }
+
+  document.getElementById("days").textContent =
+    Math.floor(diff / 86400000);
+  document.getElementById("hours").textContent =
+    Math.floor((diff % 86400000) / 3600000);
+  document.getElementById("minutes").textContent =
+    Math.floor((diff % 3600000) / 60000);
+  document.getElementById("seconds").textContent =
+    Math.floor((diff % 60000) / 1000);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
